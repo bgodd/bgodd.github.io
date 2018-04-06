@@ -18,16 +18,8 @@ iframe { border: 6px #eaeaea solid; }
             <h3>Data Preview & Cleaning</h3>
 			<p>The dimensions for the New York Census Dataset are 2167 by 36, which indicates that there are 36 features and 2167 entries in total. We started by splitting the data into two versions: one to create an "Income" model and another for an "Income Per Capita" model. For the income dataset, we removed the unnecessary columns "Borough", "IncomeErr", "IncomePerCap", and "IncomePerCapErr", which did not help us predict the median income. For the income per capita dataset, we did the same thing but kept the "IncomePerCap" instead of "Income."  We then omitted all the N/A data. After that, we removed the columns of "County", "White", "Men", "PrivateWork", "Professional", and "Transit" because they were not quite related to our target "Median Household Income" and "Income Per Capita" and they were repetitive due to high correlation as well. At this point, we had two clean datasets from which to base our models. The dataset used for modeling Median Household Income has dimensions of 2095 by 26. The dataset used for modeling Income Per Capita has dimensions 2100 by 26.</p>
 
-            <h3>Methodology</h3>
-			<p>Feature Correlation Check<br>
-Feature Selection -  Stepwise<br>
-Cross-Validation - MSE<br>
-Transformation - Log<br>
-Ridge Regression<br>
-Lasso Regression</p>
-
             <h3>Findings</h3>
-			<p>After applying the methods above, our best model for Median Household Income and Income Per Capita came from utilizing Lasso Regression. 
+			<p>After applying several methods, our best model for Median Household Income and Income Per Capita was obtained by utilizing Lasso Regression. 
 
 With Lasso Regression, we created a model for income containing 14 variables: "Hispanic", "Black", "Citizen", "logPoverty", "logService", "Office", "logConstruction", "logProduction", "Drive", "logWalk", "OtherTransp", "WorkAtHome", "Employed" and "logPublicWork". The lowest MSE was 154777322. 
 
