@@ -13,10 +13,10 @@ iframe { border: 6px #eaeaea solid; }
 			<iframe src="https://bgodd.github.io/NYIncome/interactive-maps/medianhousehold.html" frameborder="0" height="0" width="0" style="display:none;"></iframe>
 			
 			<h3>Purpose</h3>
-			<p>We are using the New York Census Data to construct the appropriate models for median household income and income per capita in NYC. The following is what we do to achieve this purpose.</p>
+			<p>Using the New York Census Data we will construct predictive models for median household income and income per capita in NYC. The following outlines the procedure we took to construct our models.  Following and overview of our findings is a detailed description of our model creation with R code and interactive data visualizations.</p>
 			
             <h3>Data Preview & Cleaning</h3>
-			<p>The dimension for this New York Census Dataset is 2167 by 36, which indicates that there are 36 features and 2167 entries in total. First of all, we customize the data into two versions individually for "Income" and "Income Per Capita". For income dataset, we remove the unnecessary columns "Borough", "IncomeErr", "IncomePerCap", and "IncomePerCapErr", which can't help us to predict the median income. For income per capita dataset, we do the same thing but keep the "IncomePerCap" instead of "Income". Then we omit all the N/A data. After that, we remove the columns of "County", "White", "Men", "PrivateWork", "Professional", and "Transit" because they are not quite related to our target "Median Household Income" and "Income Per Capita" and they are repetitive due to high correlation as well. Finally, we have two clean datasets. The one is income dataset with the dimension of 2095 by 26. And the other one is income per capita dataset with the dimension of 2100 by 26.</p>
+			<p>The dimensions for the New York Census Dataset are 2167 by 36, which indicates that there are 36 features and 2167 entries in total. We start by splitting the data into two versions: one to create an "Income" model and another for an "Income Per Capita" model. For the income dataset, we remove the unnecessary columns "Borough", "IncomeErr", "IncomePerCap", and "IncomePerCapErr", which does not help us predict the median income. For the income per capita dataset, we do the same thing but keep the "IncomePerCap" instead of "Income."  We then omit all the N/A data. After that, we remove the columns of "County", "White", "Men", "PrivateWork", "Professional", and "Transit" because they are not quite related to our target "Median Household Income" and "Income Per Capita" and they are repetitive due to high correlation as well. At time point, we have two clean datasets from which to base our models. The dataset used for modeling Median Household Income has dimensions of 2095 by 26. The dataset used for modeling Income Per Capita has dimensions 2100 by 26.</p>
 
             <h3>Methodology</h3>
 			<p>Feature Correlation Check<br>
@@ -29,11 +29,11 @@ Lasso Regression</p>
             <h3>Findings</h3>
 			<p>After all, we come up with the best models for Median Household Income and Income Per Capita. 
 
-By Lasso Regression, we get the model for income containing 14 variables which are "Hispanic", "Black", "Citizen", "logPoverty", "logService", "Office", "logConstruction", "logProduction", "Drive", "logWalk", "OtherTransp", "WorkAtHome", "Employed" and "logPublicWork". The lowest MSE is 154777322. 
+With Lasso Regression, we get a model for income containing 14 variables: "Hispanic", "Black", "Citizen", "logPoverty", "logService", "Office", "logConstruction", "logProduction", "Drive", "logWalk", "OtherTransp", "WorkAtHome", "Employed" and "logPublicWork". The lowest MSE is 154777322. 
 
-By Lasso Regression, we get the model for income per capital containing 13 variables which are "Asian", "logPoverty", "logService", "Office", "logConstruction", "logProduction", "Carpool", "Walk", "OtherTransp", "WorkAtHome", "logMeanCommute", "Employed" and "logPublicWork". The lowest MSE is 120754522. 
+With Lasso Regression, we get a model for income per capital containing 13 variables: "Asian", "logPoverty", "logService", "Office", "logConstruction", "logProduction", "Carpool", "Walk", "OtherTransp", "WorkAtHome", "logMeanCommute", "Employed" and "logPublicWork". The lowest MSE is 120754522. 
 
-Compared two models, "logPoverty", "logService", "logConstruction", "logProduction", "OtherTransp", "WorkAtHome", "Employed" and "logPublicWork" will influence both income and income per capita. They all have large coefficients which means they will significantly affect the result.</p>
+When comparing the two models, "logPoverty", "logService", "logConstruction", "logProduction", "OtherTransp", "WorkAtHome", "Employed" and "logPublicWork" influence both models; they all have large coefficients which means they will significantly affect the result.</p>
 			
 			<h3>Detailed Model Explanation</h3>			
 			<iframe src="https://bgodd.github.io/NYIncome/ModelSelection.html" frameborder="1" height="700" width="100%"></iframe>
