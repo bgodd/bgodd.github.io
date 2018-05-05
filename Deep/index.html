@@ -1,0 +1,67 @@
+---
+layout: default
+title: Data 2020 Midterm
+---
+
+<style>
+iframe { border: 6px #eaeaea solid; }
+</style>
+
+
+		<div class="about">
+			<h1>NY Income Data Project: Kai Wombacher, Ben Goddard, Jerry Chen</h1>
+			<iframe src="https://bgodd.github.io/NYIncome/interactive-maps/medianhousehold.html" frameborder="0" height="0" width="0" style="display:none;"></iframe>
+			
+			<h3>Purpose</h3>
+			<p>Using the New York Census Data we constructed predictive models for median household income and income per capita in NYC. The following outlines the procedure we took to construct our models.  Following and overview of our findings is a detailed description of our model creation with R code and interactive data visualizations.</p>
+			
+            <h3>Data Preview & Cleaning</h3>
+			<p>The dimensions for the New York Census Dataset are 2167 by 36, which indicates that there are 36 features and 2167 entries in total. We started by splitting the data into two versions: one to create an "Income" model and another for an "Income Per Capita" model. For the income dataset, we removed the unnecessary columns "Borough", "IncomeErr", "IncomePerCap", and "IncomePerCapErr", which did not help us predict the median income. For the income per capita dataset, we did the same thing but kept the "IncomePerCap" instead of "Income."  We then omitted all the N/A data. After that, we removed the columns of "County", "White", "Men", "PrivateWork", "Professional", and "Transit" because they were not quite related to our target "Median Household Income" and "Income Per Capita" and they were repetitive due to high correlation as well. At this point, we had two clean datasets from which to base our models. The dataset used for modeling Median Household Income has dimensions of 2095 by 26. The dataset used for modeling Income Per Capita has dimensions 2100 by 26.</p>
+
+            <h3>Findings</h3>
+			<p>After applying several methods, our best model for Median Household Income and Income Per Capita was obtained by utilizing Lasso Regression. 
+
+With Lasso Regression, we created a model for income containing 14 variables: "Hispanic", "Black", "Citizen", "logPoverty", "logService", "Office", "logConstruction", "logProduction", "Drive", "logWalk", "OtherTransp", "WorkAtHome", "Employed" and "logPublicWork". The lowest MSE was 154777322. 
+
+With Lasso Regression, we created a model for income per capital containing 13 variables: "Asian", "logPoverty", "logService", "Office", "logConstruction", "logProduction", "Carpool", "Walk", "OtherTransp", "WorkAtHome", "logMeanCommute", "Employed" and "logPublicWork". The lowest MSE was 120754522. 
+
+When comparing the two models, "logPoverty", "logService", "logConstruction", "logProduction", "OtherTransp", "WorkAtHome", "Employed" and "logPublicWork" influenced both models; they all had large coefficients which means they will significantly affect the result.</p>
+			
+			<h3>Detailed Model Explanation</h3>			
+			<iframe src="https://bgodd.github.io/NYIncome/ModelSelection.html" frameborder="1" height="700" width="100%"></iframe>
+            
+            <p>The model above was instrumental in identifying which predictors most strongly influenced both income per capita and median household income predictions.  Once the strongest predictors were identified it was helpful to visualize the distribution of the data with interactive maps below.  The maps below are interactive.  You can zoom in closely to areas of interest and click specific census tracts for further details.</p>
+            
+            <h3>Predictors with Negative Coefficients</h3>
+
+			<p>Median Household Income Distribution (interactive map)
+			<iframe src="https://bgodd.github.io/NYIncome/interactive-maps/medianhousehold.html" frameborder="0" height="500" width="100%"></iframe>
+			</p>
+
+			<p>Poverty: % under poverty level
+			<iframe src="https://bgodd.github.io/NYIncome/interactive-maps/poverty.html" frameborder="0" height="500" width="100%"></iframe>
+			</p>
+
+			<p>PublicWork: % employed in public jobs
+			<iframe src="https://bgodd.github.io/NYIncome/interactive-maps/publicworks.html" frameborder="0" height="500" width="100%"></iframe>
+			</p>
+			
+            <p>Production: % employed in production, transportation, and material movement
+			<iframe src="https://bgodd.github.io/NYIncome/interactive-maps/production.html" frameborder="0" height="500" width="100%"></iframe>
+			</p>
+
+			<p>Service: % employed in service jobs
+			<iframe src="https://bgodd.github.io/NYIncome/interactive-maps/service.html" frameborder="0" height="500" width="100%"></iframe>
+			</p>
+
+            <h3>Predictors with Positive Coefficients</h3>
+
+			<p>OtherTransp: % commuting via other means
+			<iframe src="https://bgodd.github.io/NYIncome/interactive-maps/othertransp.html" frameborder="0" height="500" width="100%"></iframe>
+			</p>
+			
+            <p>WorkAtHome: % working at home
+			<iframe src="https://bgodd.github.io/NYIncome/interactive-maps/workathome.html" frameborder="0" height="500" width="100%"></iframe>
+			</p>
+
+		</div>
